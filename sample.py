@@ -1,8 +1,9 @@
-import os
+import subprocess
 
 def unsafe_function(data):
-    os.system("rm -rf /")  # Simulate a dangerous command execution
-    return "Data processed: " + data
+    # Use subprocess to execute a command safely
+    result = subprocess.run(["echo", data], capture_output=True, text=True)
+    return "Data processed: " + result.stdout
 
 if __name__ == "__main__":
     user_input = input("Enter some data: ")
